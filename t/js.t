@@ -14,16 +14,21 @@ plan skip_all => 'Node.js not available'
     unless get_nodejs_path();
 
 test_format(
-    name   => 'iso8601_date',
     format => 'iso8601_date',
-    data   => [1465789176*1000       , -1, "foo", []],
-    fdata  => ["2016-06-13T03:50:00Z", -1, "foo", []],
+    data   => [1465789176*1000       , "foo", []],
+    fdata  => ["2016-06-13"          , "foo", []],
+);
+
+test_format(
+    format => 'iso8601_datetime',
+    data   => [1465789176*1000       , "foo", []],
+    fdata  => ["2016-06-13T03:39:36Z", "foo", []],
 );
 
 sub test_format {
     my %args = @_;
     my $formatter;
-    subtest $args{name} => sub {
+    subtest +($args{name} // $args{format}) => sub {
         lives_ok {
             $formatter = Data::Sah::FormatJS::gen_formatter(
                 format => $args{format},
