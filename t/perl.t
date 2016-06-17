@@ -4,8 +4,7 @@ use 5.010001;
 use strict;
 use warnings;
 
-use Data::Sah::Format;
-use Test::Exception;
+use Test::Data::Sah::Format;
 use Test::More 0.98;
 use Test::Needs;
 
@@ -100,25 +99,5 @@ subtest iso8601_datetime => sub {
         );
     };
 };
-
-sub test_format {
-    my %args = @_;
-    my $formatter;
-    subtest +($args{name} // $args{format}) => sub {
-        lives_ok {
-            $formatter = Data::Sah::Format::gen_formatter(
-                format => $args{format},
-                formatter_args => $args{formatter_args},
-            );
-        };
-        if (exists $args{data}) {
-            for my $i (0..$#{ $args{data} }) {
-                my $data  = $args{data}[$i];
-                my $fdata = $formatter->($data);
-                is_deeply($fdata, $args{fdata}[$i]);
-            }
-        }
-    };
-}
 
 done_testing;
