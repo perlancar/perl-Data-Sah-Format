@@ -96,11 +96,11 @@ sub gen_formatter {
 =head2 $Log_Formatter_Code => bool (default: from ENV or 0)
 
 If set to true, will log the generated formatter code (currently using
-L<Log::Any> at trace level). To see the log message, e.g. to the screen, you can
+L<Log::ger> at trace level). To see the log message, e.g. to the screen, you can
 use something like:
 
- % TRACE=1 perl -MLog::Any::Adapter=Screen -MData::Sah::Format=gen_formatter \
-     -E'my $c = gen_formatter(...)'
+ % TRACE=1 perl -MLog::ger::LevelFromEnv -MLog::ger::Output=Screen \
+     -MData::Sah::Format=gen_formatter -E'my $c = gen_formatter(...)'
 
 
 =head1 ENVIRONMENT
