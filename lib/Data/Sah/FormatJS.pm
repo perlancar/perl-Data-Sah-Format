@@ -6,7 +6,7 @@ package Data::Sah::FormatJS;
 use 5.010001;
 use strict 'subs', 'vars';
 use warnings;
-use Log::Any::IfLOG '$log';
+use Log::ger;
 
 use Data::Sah::FormatCommon;
 use IPC::System::Options;
@@ -46,7 +46,7 @@ sub gen_formatter {
     );
 
     if ($Log_Formatter_Code) {
-        $log->tracef("Formatter code (gen args: %s): %s", \%args, $code);
+        log_trace("Formatter code (gen args: %s): %s", \%args, $code);
     }
 
     return $code if $args{source};
